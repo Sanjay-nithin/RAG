@@ -8,7 +8,7 @@ Developed a simple RAG pipeline, and follows
     documents = {"text": text, "source": filename}
     ```
 
- - Retrieve chunks of the text with fixed chunk size and overlap chunks in a fixed size and each chunk will be one vector in the embedding matrix
+ - Retrieve chunks of the text with fixed chunk size and overlap chunks in a fixed size and each chunk will later be converted into a vector in a embedding matrix
     ```py
     chunk_size = 500
     overlap = 100
@@ -18,11 +18,11 @@ Developed a simple RAG pipeline, and follows
 
  - Convert the texts of the chunks into embeddings using any text - embedding model (used "all-MiniLM-L6-v2")
 
- - Create faiss index using IndexFlatIP and add the embeddings to the index along with the metadata and store them in a vector DB or local file .bin and metadata as .pkl
+ - Create faiss index using IndexFlatIP and add the embeddings to the index along with the metadata(which is stored seperately), the index file will be stored in vector db or a local .bin file and the metadata will be stored as a .pkl file
 
  - Recieve input query from user and generate embeddings for the input query too using the same model used to embedd the document
 
- - Perform similarity search in the vector DB using the query and fetch top k elements and retieve the chunks using the index from the metadata
+ - Perform similarity search in the faiss index using the query and fetch top k elements and retieve the chunks using the index from the metadata
 
  - Build a prompt to let the LLM generate answer only from the retrieved context
 
